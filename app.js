@@ -1,4 +1,4 @@
-// --- VIEW SWITCHER ---
+// --- VIEW SWITCHER | note if seeing this: Hello there! :D ---
 function switchView(workspaceId) {
     document.querySelectorAll('.workspace, #dashboard').forEach(section => {
         section.classList.add('hidden');
