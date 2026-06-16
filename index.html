@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FNF Cloud Mod Maker - V0.2</title>
+    <title>FNF Cloud Mod Maker - V0.4</title>
     <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
     <header>
-        <h1>🎤 FNF Cloud Mod Maker <span style="font-size: 0.5em; color: #ff0066;">V0.2</span></h1>
+        <h1>🎤 FNF Cloud Mod Maker <span style="font-size: 0.5em; color: #00ffff;">V0.4</span></h1>
         <div class="header-controls">
-            <button id="save-project-btn" onclick="saveProjectToBrowser(true)">💾 Save Project</button>
-            <button id="login-btn" onclick="loginWithGitHub()">Sync with GitHub</button>
-            <span id="user-status" class="hidden">Connected as: <strong id="username"></strong></span>
+            <span id="db-status" style="color: #ffcc00; font-weight: bold; margin-right: 15px;">📡 Syncing...</span>
+            <button id="save-project-btn" onclick="publishModToCloud()">🌐 Publish to Community</button>
+            <button id="login-btn" onclick="loginWithGitHub()">Studio Name</button>
+            <span id="user-status" class="hidden">Connected as: <strong id="username">Morkrane Studio</strong></span>
         </div>
     </header>
 
@@ -39,7 +43,7 @@
                 </button>
                 <button class="menu-card" style="border-color: #00ffff;" onclick="switchView('community-hub')">
                     <h3>🌐 Community Mods</h3>
-                    <p>Search and play mods created by others.</p>
+                    <p>Search and play live cloud mods.</p>
                 </button>
             </div>
         </section>
@@ -62,7 +66,7 @@
             </div>
 
             <div class="recording-instructions">
-                <p><strong>Controls:</strong> Press <strong>Space</strong> to Play/Pause your song. While music plays, press or hold <strong>W, A, S, D</strong> (or Arrow Keys) to record notes live!</p>
+                <p><strong>Controls:</strong> Press <strong>Space</strong> to Play/Pause your song. While music plays, press or hold <strong>W, A, S, D</strong> to record notes live!</p>
             </div>
 
             <div id="chart-visualizer-container">
@@ -76,24 +80,24 @@
             </div>
 
             <div id="mobile-controls">
-                <button class="mobile-hit-btn left-btn" data-key="0">⬅️</button>
-                <button class="mobile-hit-btn down-btn" data-key="1">⬇️</button>
-                <button class="mobile-hit-btn up-btn" data-key="2">⬆️</button>
-                <button class="mobile-hit-btn right-btn" data-key="3">➡️</button>
+                <button class="mobile-hit-btn left-btn" data-key="0">A</button>
+                <button class="mobile-hit-btn down-btn" data-key="1">S</button>
+                <button class="mobile-hit-btn up-btn" data-key="2">W</button>
+                <button class="mobile-hit-btn right-btn" data-key="3">D</button>
             </div>
         </section>
 
         <section id="community-hub" class="workspace hidden">
             <button class="back-btn" onclick="switchView('dashboard')">⬅ Dashboard</button>
-            <h2>🌐 Public Community Mods</h2>
+            <h2>🌐 Public Live Community Mods</h2>
             <div class="search-bar-container">
-                <input type="text" id="mod-search" placeholder="Search mods (e.g., 'Monarch Stickman', 'Revenge')..." oninput="filterCommunityMods()">
+                <input type="text" id="mod-search" placeholder="Search live database (e.g., 'Monarch Stickman', 'Revenge')..." oninput="filterCommunityMods()">
             </div>
             <div id="community-mods-list" class="menu-grid">
                 </div>
         </section>
 
-        <section id="song-maker" class="workspace hidden"><button class="back-btn" onclick="switchView('dashboard')">⬅ Dashboard</button><h2>Song Maker (DAW) coming soon...</h2></section>
+        <section id="song-maker" class="workspace hidden"><button class="back-btn" onclick="switchView('dashboard')">⬅ Dashboard</button><h2>Song Maker coming soon...</h2></section>
         <section id="voices" class="workspace hidden"><button class="back-btn" onclick="switchView('dashboard')">⬅ Dashboard</button><h2>Voice Creator coming soon...</h2></section>
         <section id="sprites" class="workspace hidden"><button class="back-btn" onclick="switchView('dashboard')">⬅ Dashboard</button><h2>Sprite Studio coming soon...</h2></section>
     </main>
@@ -101,5 +105,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
-note if seeing this: hehehe imma rule the world with the power of this mod maker >:D
