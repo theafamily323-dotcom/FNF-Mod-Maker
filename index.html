@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FNF Cloud Mod Maker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Bar: Authentication & Project Info -->
+    <header>
+        <h1>🎤 FNF Cloud Mod Maker</h1>
+        <div id="auth-zone">
+            <button id="login-btn" onclick="loginWithGitHub()">Sync with GitHub</button>
+            <span id="user-status" class="hidden">Connected as: <strong id="username"></strong></span>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main id="app-container">
+        <!-- Dashboard / Project Selection -->
+        <section id="dashboard">
+            <h2>Welcome! Start creating:</h2>
+            <div class="menu-grid">
+                <button class="menu-card" onclick="switchView('notes-workspace')">
+                    <h3>📝 Notes</h3>
+                    <p>Record charts live by tapping keys to the beat.</p>
+                </button>
+                <button class="menu-card" onclick="switchView('song-maker')">
+                    <h3>🎵 Song Maker</h3>
+                    <p>Compose background tracks and record lyrics.</p>
+                </button>
+                <button class="menu-card" onclick="switchView('voices')">
+                    <h3>🎤 Voices</h3>
+                    <p>Build character vocal sounds and chromatic scales.</p>
+                </button>
+                <button class="menu-card" onclick="switchView('sprites')">
+                    <h3>🎨 Sprites</h3>
+                    <p>Draw or upload custom character animations.</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- Dynamic Workspaces (Hidden by default) -->
+        <section id="notes-workspace" class="workspace hidden">
+            <button onclick="switchView('dashboard')">⬅ Back to Dashboard</button>
+            <h2>Notes Workspace (Live Recorder)</h2>
+            <p>Press Space to Play/Pause. Use ASDF / Arrow keys to record notes live.</p>
+            <div id="recording-status">Status: Ready</div>
+            <div id="timeline-visualizer">
+                <!-- Live scrolling notes will render here -->
+            </div>
+        </section>
+
+        <section id="song-maker" class="workspace hidden">
+            <button onclick="switchView('dashboard')">⬅ Back to Dashboard</button>
+            <h2>Song Maker (DAW)</h2>
+        </section>
+
+        <section id="voices" class="workspace hidden">
+            <button onclick="switchView('dashboard')">⬅ Back to Dashboard</button>
+            <h2>Voice Creator</h2>
+        </section>
+
+        <section id="sprites" class="workspace hidden">
+            <button onclick="switchView('dashboard')">⬅ Back to Dashboard</button>
+            <h2>Sprite Studio</h2>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
